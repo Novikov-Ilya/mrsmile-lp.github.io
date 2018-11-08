@@ -1,0 +1,16 @@
+{
+  "name": "news",
+  "version": "1.0.0",
+  "description": "home task 1 frontcamp",
+  "main": "index.html",
+  "scripts": {
+    "start": "index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "news"
+  },
+  "author": "Ilya Novikau",
+  "license": "ISC"
+}
