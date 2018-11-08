@@ -1,0 +1,32 @@
+body {    
+    display: block;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.main-wrapper {
+    background-color: #e0f2f1;
+    
+    margin-left: 25%;
+    margin-right: 0;
+    width: 1200px;
+}
+
+.header, .footer {
+    background-color: #2196f3;
+    text-align: center;
+}
+
+.header {
+    border-radius: 7px 7px 0 0;
+}
+
+.footer {
+    border-radius: 0 0 7px 7px;
+}
+
+.choose-news-theme {
+    margin-left: 10px;
+}
