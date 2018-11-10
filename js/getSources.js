@@ -2,30 +2,33 @@ const apiKey = '7a67c40c89ea4952830387b8f9e5090e';
 const url = 'https://newsapi.org/v2/sources?apiKey=';
 const urlNews = 'https://newsapi.org/v2/everything?q=';
 var list = document.getElementById('list');
+const defaultSource = 'abc-news';
 
 
 function getAllSources() {
-fetch(url + apiKey)
-.then(function(response) {
-    return response.json();    
-}).then(function(data) {
-    data.sources.map(function(elem) {
+    fetch(url + apiKey)
+    .then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        data.sources.map(function(elem) {
         var option = document.createElement('option');
         var content = document.createTextNode(elem.name);
         option.setAttribute('value', elem.id);
         option.appendChild(content);
-        return list.appendChild(option); 
-    }).join('\n');
+        return list.appendChild(option);
+        }).join('\n');
+    })
+}
 
+function displayNews () {
     fetch(setFullUrl())
     .then(function(response) {
         return response.json();
-    }).then(function(data){
+    }).then(function(data) {
         data.articles.map(function(respArticle) {
-           createArticle(respArticle);
-        }).join('\n');
+            createArticle(respArticle);
+        })
     })
-})
 }
 
 function createArticle (art) {
@@ -35,15 +38,18 @@ function createArticle (art) {
     article.className = 'article';
 
     var urlToOriginalArticle = document.createElement('a');
-    //urlToOriginalArticle.setAttribute('target', '_blank');
-    urlToOriginalArticle.setAttribute('src', art.url);
+    urlToOriginalArticle.setAttribute('target', '_blank');
+    urlToOriginalArticle.setAttribute('href', art.url);
+    urlToOriginalArticle.className = 'article-url';
 
     var articleTitle = document.createElement('h3');
     var articleTitleText = document.createTextNode(art.title);
     articleTitle.appendChild(articleTitleText);
 
     var articleImage = document.createElement('img');
-    articleImage.setAttribute('src', art.urlToImage);
+    if (art.urlToImage){
+        articleImage.setAttribute('src', art.urlToImage);
+    } else articleImage.setAttribute('src', 'noimage.png');    
     articleImage.className = 'article-image';
     
     var articleDivText = document.createElement('div');
@@ -57,18 +63,17 @@ function createArticle (art) {
     articleTextAndImage.appendChild(articleDivText);
     articleTextAndImage.className = 'article-teaser';
 
-    article.appendChild(articleTitle);
-    article.appendChild(articleTextAndImage);
+    urlToOriginalArticle.appendChild(articleTitle);
+    urlToOriginalArticle.appendChild(articleTextAndImage);
 
-    urlToOriginalArticle.appendChild(article)
+    article.appendChild(urlToOriginalArticle);
 
-    mainContent.appendChild(urlToOriginalArticle);
+    mainContent.appendChild(article);
 }
 
 function setFullUrl() {
-    var list = document.getElementById('list');
-    source = list.value;
-    return urlNews + source + '&apiKey=' + apiKey;
+    return urlNews + defaultSource + '&apiKey=' + apiKey;
 }
 
 getAllSources();
+displayNews();

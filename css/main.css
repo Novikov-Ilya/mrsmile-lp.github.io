@@ -16,6 +16,7 @@ body {
     height: auto;
     display: flex;
     flex-direction: column;
+    padding: 0 10px 0 10px;
 }
 
 .header, .footer {
@@ -42,18 +43,29 @@ body {
 
 .article {
     display: block;
-    clear: both;
-    padding: 0 10px 0 10px;
-    min-height: 180px;
+    /* clear: both; */
+    min-height: 200px;
+    padding-bottom: 25px;
 }
 
 .article-image {
     height: 144px;
-    widows: 256px;
+    width: 256px;
     margin-right: 10px;
 }
 
 .article-teaser {
     display: flex;
     flex-direction: row;
+    color: black;
+}
+
+.article-url {
+    text-decoration: none;
+}
+
+@media (max-width:360pt){
+    .article-teaser {
+        flex-direction: column;
+    }
 }
