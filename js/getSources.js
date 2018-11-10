@@ -34,6 +34,10 @@ function createArticle (art) {
     var article = document.createElement('div');
     article.className = 'article';
 
+    var urlToOriginalArticle = document.createElement('a');
+    //urlToOriginalArticle.setAttribute('target', '_blank');
+    urlToOriginalArticle.setAttribute('src', art.url);
+
     var articleTitle = document.createElement('h3');
     var articleTitleText = document.createTextNode(art.title);
     articleTitle.appendChild(articleTitleText);
@@ -44,15 +48,21 @@ function createArticle (art) {
     
     var articleDivText = document.createElement('div');
     var articleTextP = document.createElement('p');
-    var articleText = document.createTextNode(art.content);
+    var articleText = document.createTextNode(art.description);
     articleTextP.appendChild(articleText);
     articleDivText.appendChild(articleTextP);
 
+    var articleTextAndImage = document.createElement('div');
+    articleTextAndImage.appendChild(articleImage);
+    articleTextAndImage.appendChild(articleDivText);
+    articleTextAndImage.className = 'article-teaser';
+
     article.appendChild(articleTitle);
-    article.appendChild(articleImage);
-    article.appendChild(articleDivText);
-    
-    mainContent.appendChild(article);
+    article.appendChild(articleTextAndImage);
+
+    urlToOriginalArticle.appendChild(article)
+
+    mainContent.appendChild(urlToOriginalArticle);
 }
 
 function setFullUrl() {
