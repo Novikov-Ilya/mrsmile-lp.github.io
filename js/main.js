@@ -2,7 +2,7 @@ const apiKey = '7a67c40c89ea4952830387b8f9e5090e';
 const url = 'https://newsapi.org/v2/sources?apiKey=';
 const urlNews = 'https://newsapi.org/v2/everything?q=';
 var list = document.getElementById('list');
-const defaultSource = 'abc-news';
+var defaultSource = 'abc-news';
 
 
 function getAllSources() {
