@@ -71,7 +71,7 @@ function createArticle (art) {
     mainContent.appendChild(article);
 }
 
-function setFullUrl() {
+function setFullUrl(defaultSource) {
     return urlNews + defaultSource + '&apiKey=' + apiKey;
 }
 

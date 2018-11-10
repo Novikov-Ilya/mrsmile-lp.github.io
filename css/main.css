@@ -16,7 +16,7 @@ body {
     height: auto;
     display: flex;
     flex-direction: column;
-    padding: 0 10px 0 10px;
+    padding: 10px 10px 0 10px;
 }
 
 .header, .footer {
@@ -43,14 +43,22 @@ body {
 
 .article {
     display: block;
-    /* clear: both; */
     min-height: 200px;
-    padding-bottom: 25px;
+    margin-bottom: 25px;
+    padding: 15px;
+    border: #0D47A1 solid 1px;
+    border-radius: 7px;
+    transition: linear .5s;
+}
+
+.article:hover {
+    border-color: #B71C1C;
+    transition: linear .5s;
 }
 
 .article-image {
     height: 144px;
-    width: 256px;
+    min-width: 260px;
     margin-right: 10px;
 }
 
