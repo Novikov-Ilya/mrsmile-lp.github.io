@@ -6,9 +6,14 @@ body {
 }
 
 .main-wrapper {
-    background-color: #e0f2f1;
+    
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.main-content {
+    background-color: #e0f2f1;
+    height: auto;
 }
 
 .header, .footer {
@@ -22,8 +27,27 @@ body {
 
 .footer {
     border-radius: 0 0 7px 7px;
+    clear: both;
 }
 
 .choose-news-theme {
     margin-left: 10px;
+}
+
+.select-theme-wrapper {
+    margin-bottom: 10px;
+}
+
+.article {
+    display: block;
+    clear: both;
+    padding: 0 10px 0 10px;
+    min-height: 180px;
+}
+
+.article-image {
+    height: 144px;
+    widows: 256px;
+    float: left;
+    margin-right: 10px;
 }

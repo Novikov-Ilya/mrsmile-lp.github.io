@@ -3,6 +3,7 @@ const url = 'https://newsapi.org/v2/sources?apiKey=';
 const urlNews = 'https://newsapi.org/v2/everything?q=';
 var list = document.getElementById('list');
 
+
 function getAllSources() {
 fetch(url + apiKey)
 .then(function(response) {
@@ -15,23 +16,43 @@ fetch(url + apiKey)
         option.appendChild(content);
         return list.appendChild(option); 
     }).join('\n');
+
     fetch(setFullUrl())
     .then(function(response) {
         return response.json();
     }).then(function(data){
         data.articles.map(function(respArticle) {
-            return createArticle(respArticle); 
+           createArticle(respArticle);
         }).join('\n');
     })
 })
 }
 
 function createArticle (art) {
-    return `
-    <div class="article">
-     <a href="${art.url}">${art.url}</a>
-    </div> 
-    `
+    const mainContent = document.getElementById('maincontent');
+    
+    var article = document.createElement('div');
+    article.className = 'article';
+
+    var articleTitle = document.createElement('h3');
+    var articleTitleText = document.createTextNode(art.title);
+    articleTitle.appendChild(articleTitleText);
+
+    var articleImage = document.createElement('img');
+    articleImage.setAttribute('src', art.urlToImage);
+    articleImage.className = 'article-image';
+    
+    var articleDivText = document.createElement('div');
+    var articleTextP = document.createElement('p');
+    var articleText = document.createTextNode(art.content);
+    articleTextP.appendChild(articleText);
+    articleDivText.appendChild(articleTextP);
+
+    article.appendChild(articleTitle);
+    article.appendChild(articleImage);
+    article.appendChild(articleDivText);
+    
+    mainContent.appendChild(article);
 }
 
 function setFullUrl() {
