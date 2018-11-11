@@ -2,7 +2,9 @@ const apiKey = '7a67c40c89ea4952830387b8f9e5090e';
 const url = 'https://newsapi.org/v2/sources?apiKey=';
 const urlNews = 'https://newsapi.org/v2/everything?q=';
 var list = document.getElementById('list');
-var defaultSource = 'abc-news';
+var source = 'abc-news';
+const submitSource = document.getElementById('submitSource');
+var mainContent = document.getElementById('maincontent');
 
 
 function getAllSources() {
@@ -21,7 +23,7 @@ function getAllSources() {
 }
 
 function displayNews () {
-    fetch(setFullUrl())
+    fetch(setFullUrl(source))
     .then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -71,8 +73,17 @@ function createArticle (art) {
     mainContent.appendChild(article);
 }
 
-function setFullUrl(defaultSource) {
-    return urlNews + defaultSource + '&apiKey=' + apiKey;
+function setFullUrl(source) {
+    return urlNews + source + '&apiKey=' + apiKey;
+}
+
+function updateNews() {
+    source = list.value;
+    setFullUrl(source);
+    while (mainContent.firstChild) {
+        mainContent.removeChild(mainContent.firstChild);
+        }
+    displayNews();
 }
 
 getAllSources();
