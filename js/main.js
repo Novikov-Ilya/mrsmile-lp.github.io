@@ -1,28 +1,28 @@
 const apiKey = '7a67c40c89ea4952830387b8f9e5090e';
-const url = 'https://newsapi.org/v2/sources?apiKey=';
-const urlNews = 'https://newsapi.org/v2/everything?q=';
-var list = document.getElementById('list');
-var source = 'abc-news';
+const url = 'https://newsapi.org/v2/sources';
+const urlNews = 'https://newsapi.org/v2/everything';
+const list = document.getElementById('list');
+const defaultSource = 'abc-news';
 const submitSource = document.getElementById('submitSource');
-var mainContent = document.getElementById('maincontent');
+const mainContent = document.getElementById('maincontent');
 
 
 function getAllSources() {
-    fetch(url + apiKey)
+    fetch(`${url}?apiKey=${apiKey}`)
     .then(function(response) {
         return response.json();
     }).then(function(data) {
         data.sources.map(function(elem) {
-        var option = document.createElement('option');
-        var content = document.createTextNode(elem.name);
+        let option = document.createElement('option');
+        let content = document.createTextNode(elem.name);
         option.setAttribute('value', elem.id);
         option.appendChild(content);
         return list.appendChild(option);
-        }).join('\n');
+        })
     })
 }
 
-function displayNews () {
+function displayNews (source) {
     fetch(setFullUrl(source))
     .then(function(response) {
         return response.json();
@@ -36,31 +36,31 @@ function displayNews () {
 function createArticle (art) {
     const mainContent = document.getElementById('maincontent');
     
-    var article = document.createElement('div');
+    let article = document.createElement('div');
     article.className = 'article';
 
-    var urlToOriginalArticle = document.createElement('a');
+    let urlToOriginalArticle = document.createElement('a');
     urlToOriginalArticle.setAttribute('target', '_blank');
     urlToOriginalArticle.setAttribute('href', art.url);
     urlToOriginalArticle.className = 'article-url';
 
-    var articleTitle = document.createElement('h3');
-    var articleTitleText = document.createTextNode(art.title);
+    let articleTitle = document.createElement('h3');
+    let articleTitleText = document.createTextNode(art.title);
     articleTitle.appendChild(articleTitleText);
 
-    var articleImage = document.createElement('img');
+    let articleImage = document.createElement('img');
     if (art.urlToImage){
         articleImage.setAttribute('src', art.urlToImage);
     } else articleImage.setAttribute('src', 'noimage.png');    
     articleImage.className = 'article-image';
     
-    var articleDivText = document.createElement('div');
-    var articleTextP = document.createElement('p');
-    var articleText = document.createTextNode(art.description);
+    let articleDivText = document.createElement('div');
+    let articleTextP = document.createElement('p');
+    let articleText = document.createTextNode(art.description);
     articleTextP.appendChild(articleText);
     articleDivText.appendChild(articleTextP);
 
-    var articleTextAndImage = document.createElement('div');
+    let articleTextAndImage = document.createElement('div');
     articleTextAndImage.appendChild(articleImage);
     articleTextAndImage.appendChild(articleDivText);
     articleTextAndImage.className = 'article-teaser';
@@ -74,17 +74,16 @@ function createArticle (art) {
 }
 
 function setFullUrl(source) {
-    return urlNews + source + '&apiKey=' + apiKey;
+    return `${urlNews}?q=${source}&apiKey=${apiKey}`;
 }
 
 function updateNews() {
     source = list.value;
-    setFullUrl(source);
     while (mainContent.firstChild) {
         mainContent.removeChild(mainContent.firstChild);
         }
-    displayNews();
+    displayNews(source);
 }
 
 getAllSources();
-displayNews();
+displayNews(defaultSource);
