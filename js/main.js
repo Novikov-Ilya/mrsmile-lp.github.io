@@ -78,7 +78,9 @@ function setFullUrl(source) {
 }
 
 function updateNews() {
-    source = list.value;
+    if (list.value) {
+        source = list.value;
+    } else source = defaultSource;
     while (mainContent.firstChild) {
         mainContent.removeChild(mainContent.firstChild);
         }
@@ -87,3 +89,4 @@ function updateNews() {
 
 getAllSources();
 displayNews(defaultSource);
+submitSource.addEventListener("click", updateNews);
