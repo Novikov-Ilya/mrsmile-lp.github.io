@@ -22,7 +22,7 @@ function getAllSources() {
     })
 }
 
-function displayNews (source) {
+function displayNews (source = defaultSource) {
     fetch(setFullUrl(source))
     .then(function(response) {
         return response.json();
@@ -78,9 +78,7 @@ function setFullUrl(source) {
 }
 
 function updateNews() {
-    if (list.value) {
-        source = list.value;
-    } else source = defaultSource;
+    source = list.value;
     while (mainContent.firstChild) {
         mainContent.removeChild(mainContent.firstChild);
         }
