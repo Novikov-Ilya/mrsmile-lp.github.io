@@ -18,14 +18,11 @@ async function getAllSources() {
     })
 }
 
-function displayNews (source = defaultSource) {
-    fetch(setFullUrl(source))
-    .then(function(response) {
-        return response.json();
-    }).then(function(data) {
-        data.articles.map(function(respArticle) {
-            createArticle(respArticle);
-        })
+async function displayNews (source = defaultSource) {
+    const res = await fetch(setFullUrl(source));
+    const response = await res.json();
+    response.articles.map(respArticle => {
+        createArticle(respArticle);
     })
 }
 
