@@ -71,7 +71,7 @@ function setFullUrl(source) {
 }
 
 function updateNews() {
-    source = list.value;
+    const source = list.value;
     while (mainContent.firstChild) {
         mainContent.removeChild(mainContent.firstChild);
         }
