@@ -1,31 +1,3 @@
-const apiKey = '7a67c40c89ea4952830387b8f9e5090e';
-const url = 'https://newsapi.org/v2/sources';
-const urlNews = 'https://newsapi.org/v2/everything';
-const list = document.getElementById('list');
-const defaultSource = 'abc-news';
-const submitSource = document.getElementById('submitSource');
-const mainContent = document.getElementById('maincontent');
-
-async function getAllSources() {
-    const res = await fetch(`${url}?apiKey=${apiKey}`);
-    const response = await res.json();
-    response.sources.map(elem => {
-        let option = document.createElement('option');
-        let content = document.createTextNode(elem.name);
-        option.setAttribute('value', elem.id);
-        option.appendChild(content);
-        return list.appendChild(option);
-    })
-}
-
-async function displayNews (source = defaultSource) {
-    const res = await fetch(setFullUrl(source));
-    const response = await res.json();
-    response.articles.map(respArticle => {
-        createArticle(respArticle);
-    })
-}
-
 function createArticle (art) {
     const mainContent = document.getElementById('maincontent');
     
@@ -66,18 +38,4 @@ function createArticle (art) {
     mainContent.appendChild(article);
 }
 
-function setFullUrl(source) {
-    return `${urlNews}?q=${source}&apiKey=${apiKey}`;
-}
-
-function updateNews() {
-    const source = list.value;
-    while (mainContent.firstChild) {
-        mainContent.removeChild(mainContent.firstChild);
-        }
-    displayNews(source);
-}
-
-getAllSources();
-displayNews(defaultSource);
-submitSource.addEventListener("click", updateNews);
+export default createArticle;
