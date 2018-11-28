@@ -10,7 +10,7 @@ async function getAllSources() {
         option.setAttribute('value', elem.id);
         option.appendChild(content);
         return list.appendChild(option);
-    })
+    });
 }
 
 export default getAllSources;

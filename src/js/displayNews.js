@@ -6,7 +6,7 @@ async function displayNews (source = defaultSource) {
     const response = await res.json();
     response.articles.map(respArticle => {
         createArticle(respArticle);
-    })
+    });
 }
 
 export default displayNews;
