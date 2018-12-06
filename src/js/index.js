@@ -5,6 +5,7 @@ import getAllSources from './getAllSources';
 import displayNews from './displayNews';
 import createArticle from './createArticle';
 import updateNews from './updateNews';
+import factoryNews from './factoryNews';
 
 export const list = document.getElementById('list');
 export const defaultSource = 'abc-news';
@@ -15,5 +16,6 @@ export const urlNews = 'https://newsapi.org/v2/everything';
 export const submitSource = document.getElementById('submitSource');
 
 getAllSources();
-displayNews(defaultSource);
+//displayNews(defaultSource);
+factoryNews('display');
 submitSource.addEventListener("click", updateNews);

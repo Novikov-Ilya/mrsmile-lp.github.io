@@ -2,7 +2,7 @@ import {url} from './index';
 import {apiKey} from './index';
 
 async function getAllSources() {
-    const res = await fetch(`${url}?apiKey=${apiKey}`);
+    const res = await fetch(`${url}?apiKey=${apiKey}`);    
     const response = await res.json();
     response.sources.map(elem => {
         let option = document.createElement('option');

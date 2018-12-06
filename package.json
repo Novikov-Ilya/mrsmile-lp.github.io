@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "webpack": "webpack",
-    "dev": "webpack --config webpack/webpack.prod.js  --colors",
-    "prod": "webpack-dev-server --open --config webpack/webpack.dev.js"
+    "prod": "webpack --config webpack/webpack.prod.js  --colors",
+    "dev": "webpack-dev-server --open --config webpack/webpack.dev.js"
   },
   "repository": {
     "type": "git",
