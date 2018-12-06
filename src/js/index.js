@@ -16,6 +16,5 @@ export const urlNews = 'https://newsapi.org/v2/everything';
 export const submitSource = document.getElementById('submitSource');
 
 getAllSources();
-//displayNews(defaultSource);
 factoryNews('display');
 submitSource.addEventListener("click", updateNews);
